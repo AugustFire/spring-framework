@@ -31,6 +31,8 @@ import org.springframework.lang.Nullable;
  * autowiring, provided that they want to expose this functionality for
  * existing bean instances.
  *
+ * 为存在的Bean实例暴露autowiring功能
+ *
  * <p>This subinterface of BeanFactory is not meant to be used in normal
  * application code: stick to {@link org.springframework.beans.factory.BeanFactory}
  * or {@link org.springframework.beans.factory.ListableBeanFactory} for

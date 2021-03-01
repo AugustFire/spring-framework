@@ -27,6 +27,10 @@ import org.springframework.lang.Nullable;
  * {@link org.springframework.beans.factory.config.ConfigurableBeanFactory}
  * are available for specific purposes.
  *
+ * 访问Spring容器的根接口
+ * Bean容器最基础的客户端视角
+ * 明确目的由具体子类实现
+ *
  * <p>This interface is implemented by objects that hold a number of bean definitions,
  * each uniquely identified by a String name. Depending on the bean definition,
  * the factory will return either an independent instance of a contained object
@@ -36,6 +40,10 @@ import org.springframework.lang.Nullable;
  * depends on the bean factory configuration: the API is the same. Since Spring
  * 2.0, further scopes are available depending on the concrete application
  * context (e.g. "request" and "session" scopes in a web environment).
+ *
+ * 这个接口被那些持有一些列bean定义的对象实现
+ * 这个工厂会要么返回容器中独立的Bean(原型设计模式),要么单例共享对象(单例模式的更好替代方式,再这个工厂中是单例)
+ * 返回哪种类型取决与工厂的配置:API是一样的.
  *
  * <p>The point of this approach is that the BeanFactory is a central registry
  * of application components, and centralizes configuration of application
