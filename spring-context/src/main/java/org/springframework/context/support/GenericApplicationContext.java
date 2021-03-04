@@ -105,10 +105,10 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	 * Create a new GenericApplicationContext.
 	 * @see #registerBeanDefinition
 	 * @see #refresh
-	 */{
+	 */
+	public GenericApplicationContext() {
 		this.beanFactory = new DefaultListableBeanFactory();
 	}
-	public GenericApplicationContext()
 
 	/**
 	 * Create a new GenericApplicationContext with the given DefaultListableBeanFactory.

@@ -46,6 +46,8 @@ import org.springframework.util.StringValueResolver;
  * <p>Application contexts will automatically register this with their
  * underlying bean factory. Applications do not use this directly.
  *
+ * 处理xxxAware接口的BeanPostProcessor
+ *
  * @author Juergen Hoeller
  * @author Costin Leau
  * @author Chris Beams
@@ -93,6 +95,7 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 			}, acc);
 		}
 		else {
+			// 执行aware接口方法
 			invokeAwareInterfaces(bean);
 		}
 
