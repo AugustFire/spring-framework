@@ -546,7 +546,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		synchronized (mbd.postProcessingLock) {
 			if (!mbd.postProcessed) {
 				try {
-					// 应用BeanPostProcessor[MergedBeanDefinitionPostProcessor]以允许修改Bean定义
+					// 应用BeanPostProcessor#MergedBeanDefinitionPostProcessor]
 					applyMergedBeanDefinitionPostProcessors(mbd, beanType, beanName);
 				}
 				catch (Throwable ex) {
@@ -1304,11 +1304,14 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// Give any InstantiationAwareBeanPostProcessors the opportunity to modify the
 		// state of the bean before properties are set. This can be used, for example,
 		// to support styles of field injection.
+
+		// 给`InstantiationAwareBeanPostProcessors`一个机会在属性设置前去修改Bean的状态(可以用作比如说支持字段注入)
 		if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
 				if (bp instanceof InstantiationAwareBeanPostProcessor) {
 					InstantiationAwareBeanPostProcessor ibp = (InstantiationAwareBeanPostProcessor) bp;
 					if (!ibp.postProcessAfterInstantiation(bw.getWrappedInstance(), beanName)) {
+						// 如果有任何一个`postProcessAfterInstantiation`返回false,直接跳过属性赋值
 						return;
 					}
 				}
