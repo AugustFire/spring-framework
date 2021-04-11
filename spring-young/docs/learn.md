@@ -1,6 +1,33 @@
-# 常见的BeanPostProcessor
+# Bean的创建
+```text
+    读取bd    ->  修改bd    -> 创建Bean -> 注入依赖属性  -> 执行初始化方法
+```
 
-## 1.BeanPostProcessor
-## 2.InstantiationAwareBeanPostProcessor
+# BeanPostProcessor
+## 1.BeanPostProcessor(I)
+```text
+    #postProcessBeforeInitialization    初始化前
+    #postProcessBeforeInitialization    Bean初始化后
+```
+### 1.1 ApplicationContextAwareProcessor(IC)
+BeanPostProcessor的直接子类,在初始化前为实现Aware的实现了各类上下文对象
+```java
+	private void postProcessBeforeInitialization#invokeAwareInterfaces(Object bean) {
+		if (bean instanceof Aware) {
+			if (bean instanceof EnvironmentAware) {
+				((EnvironmentAware) bean).setEnvironment(this.applicationContext.getEnvironment());
+			}
+			//...
+	}
+```
 
+## 2.InstantiationAwareBeanPostProcessor(II)
+```textmate
+    #postProcessBeforeInstantiation     在实例化之前(压制默认的实例化方式)
+    #postProcessAfterInstantiation      在实例化之后(默认返回true后继续后续操作,比如属性赋值)
+```
+## 3.CommonAnnotationBeanPostProcessor
 
+## 4.AutowiredAnnotationBeanPostProcessor
+
+## 5.RequiredAnnotationBeanPostProcessor

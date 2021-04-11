@@ -1305,7 +1305,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// state of the bean before properties are set. This can be used, for example,
 		// to support styles of field injection.
 
-		// 给`InstantiationAwareBeanPostProcessors`一个机会在属性设置前去修改Bean的状态(可以用作比如说支持字段注入)
+		// 给`InstantiationAwareBeanPostProcessors`时机在属性设置前去修改Bean的状态(可以用作比如说支持字段注入)
 		if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
 				if (bp instanceof InstantiationAwareBeanPostProcessor) {
