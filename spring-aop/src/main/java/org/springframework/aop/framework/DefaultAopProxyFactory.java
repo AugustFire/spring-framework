@@ -22,6 +22,7 @@ import java.lang.reflect.Proxy;
 import org.springframework.aop.SpringProxy;
 
 /**
+ * <p>默认的AOP代理工厂的实现,创建CGLIB代理或者JDK动态代理</p>
  * Default {@link AopProxyFactory} implementation, creating either a CGLIB proxy
  * or a JDK dynamic proxy.
  *
@@ -57,14 +58,17 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 			if (targetClass.isInterface() || Proxy.isProxyClass(targetClass)) {
 				return new JdkDynamicAopProxy(config);
 			}
+			// CGLIB代理
 			return new ObjenesisCglibAopProxy(config);
 		}
 		else {
+			// jdk动态代理
 			return new JdkDynamicAopProxy(config);
 		}
 	}
 
 	/**
+	 * <p>判断提供的`AdvisedSupport`是否有不需要代理的接口申明</p>
 	 * Determine whether the supplied {@link AdvisedSupport} has only the
 	 * {@link org.springframework.aop.SpringProxy} interface specified
 	 * (or no proxy interfaces specified at all).

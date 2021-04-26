@@ -46,6 +46,7 @@ import org.springframework.util.Assert;
 public abstract class AopConfigUtils {
 
 	/**
+	 * 自动代理创建器
 	 * The bean name of the internally managed auto-proxy creator.
 	 */
 	public static final String AUTO_PROXY_CREATOR_BEAN_NAME =
@@ -90,13 +91,14 @@ public abstract class AopConfigUtils {
 
 	@Nullable
 	public static BeanDefinition registerAspectJAnnotationAutoProxyCreatorIfNecessary(BeanDefinitionRegistry registry) {
+		// step 1
 		return registerAspectJAnnotationAutoProxyCreatorIfNecessary(registry, null);
 	}
 
 	@Nullable
 	public static BeanDefinition registerAspectJAnnotationAutoProxyCreatorIfNecessary(
 			BeanDefinitionRegistry registry, @Nullable Object source) {
-
+		// step 2
 		return registerOrEscalateApcAsRequired(AnnotationAwareAspectJAutoProxyCreator.class, registry, source);
 	}
 
@@ -114,6 +116,7 @@ public abstract class AopConfigUtils {
 		}
 	}
 
+	//step 3
 	@Nullable
 	private static BeanDefinition registerOrEscalateApcAsRequired(
 			Class<?> cls, BeanDefinitionRegistry registry, @Nullable Object source) {

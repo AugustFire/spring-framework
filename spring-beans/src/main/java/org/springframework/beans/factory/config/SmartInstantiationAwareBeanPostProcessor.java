@@ -67,6 +67,10 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	}
 
 	/**
+	 * <p>
+	 * 获取声明Bean的早期引用,通常的目的是为了循环依赖,
+	 * 这个回调给post-processors一个机会暴露一个早期包装,也就是在目标Bean实例完全初始化之前
+	 * </p>
 	 * Obtain a reference for early access to the specified bean,
 	 * typically for the purpose of resolving a circular reference.
 	 * <p>This callback gives post-processors a chance to expose a wrapper

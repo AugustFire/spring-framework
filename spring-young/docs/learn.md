@@ -1,9 +1,11 @@
-# Bean的创建
+# I.Bean的创建
 ```text
-    读取bd    ->  修改bd    -> 创建Bean -> 注入依赖属性  -> 执行初始化方法
+    读取bd    ->  修改bd    -> 创建Bean -> 属性注入  -> 执行初始化方法 -> 代理对象
 ```
 
-# BeanPostProcessor
+# II BeanFactoryPostProcessor
+
+# III.BeanPostProcessor
 ## 1.BeanPostProcessor(I)
 ```text
     #postProcessBeforeInitialization    初始化前
@@ -31,3 +33,6 @@ BeanPostProcessor的直接子类,在初始化前为实现Aware的实现了各类
 ## 4.AutowiredAnnotationBeanPostProcessor
 
 ## 5.RequiredAnnotationBeanPostProcessor
+
+# IV Circular dependency
+[circular dependency](https://www.cnblogs.com/daimzh/p/13256413.html#%E5%89%8D%E8%A8%80)
