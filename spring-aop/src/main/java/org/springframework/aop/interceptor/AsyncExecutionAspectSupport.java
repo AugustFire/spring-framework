@@ -150,7 +150,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 		AsyncTaskExecutor executor = this.executors.get(method);
 		if (executor == null) {
 			Executor targetExecutor;
-			String qualifier = getExecutorQualifier(method);
+			String qualifier = getExecutorQualifier(method); //根据方法别名取指定的执行器
 			if (StringUtils.hasLength(qualifier)) {
 				targetExecutor = findQualifiedExecutor(this.beanFactory, qualifier);
 			}
@@ -159,6 +159,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 				if (targetExecutor == null) {
 					synchronized (this.executors) {
 						if (this.defaultExecutor == null) {
+							// 获取默认的线程池
 							this.defaultExecutor = getDefaultExecutor(this.beanFactory);
 						}
 						targetExecutor = this.defaultExecutor;

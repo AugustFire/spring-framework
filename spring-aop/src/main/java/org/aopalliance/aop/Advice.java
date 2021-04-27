@@ -17,6 +17,7 @@
 package org.aopalliance.aop;
 
 /**
+ * <p>通知的顶级接口</p>
  * Tag interface for Advice. Implementations can be any type
  * of advice, such as Interceptors.
  *

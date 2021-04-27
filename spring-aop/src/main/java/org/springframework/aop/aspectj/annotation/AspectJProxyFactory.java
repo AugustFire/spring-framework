@@ -32,6 +32,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
+ * <p>基于AspectJ的代理工厂,允许编程方式构建代理(@Aspect标注的类和目标类)</p>
+ * https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aop-aspectj-programmatic
+ *
  * AspectJ-based proxy factory, allowing for programmatic building
  * of proxies which include AspectJ aspects (code style as well
  * Java 5 annotation style).

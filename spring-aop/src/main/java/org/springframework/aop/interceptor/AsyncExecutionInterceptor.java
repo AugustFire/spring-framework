@@ -104,6 +104,7 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 		Method specificMethod = ClassUtils.getMostSpecificMethod(invocation.getMethod(), targetClass);
 		final Method userDeclaredMethod = BridgeMethodResolver.findBridgedMethod(specificMethod);
 
+		// 决策要使用的异步执行器
 		AsyncTaskExecutor executor = determineAsyncExecutor(userDeclaredMethod);
 		if (executor == null) {
 			throw new IllegalStateException(
@@ -155,7 +156,7 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 	@Nullable
 	protected Executor getDefaultExecutor(@Nullable BeanFactory beanFactory) {
 		Executor defaultExecutor = super.getDefaultExecutor(beanFactory);
-		return (defaultExecutor != null ? defaultExecutor : new SimpleAsyncTaskExecutor());
+		return (defaultExecutor != null ? defaultExecutor : new SimpleAsyncTaskExecutor()); //返回默认的线程池
 	}
 
 	@Override
