@@ -1,3 +1,15 @@
+# 目标
+| 模块                | 单元               | 阅读覆盖率(要求60%+) | 备注 |
+| ------------------- | ------------------ | -------------------- | ---- |
+| ioc                 | refresh/config,    | 20%                  |      |
+| bean life           | getBean            | 45%                  |      |
+| circular dependency | cd                 | 45%                  |      |
+| aop                 | aspect,advisor,aop | 40%                  |      |
+| async               | advisor            | 50%                  |      |
+| transcation         | ?                  | 0%                   |      |
+| web(optional)       | ?                  | 0%                   |      |
+
+
 # I.Bean的创建
 ```text
     读取bd    ->  修改bd    -> 创建Bean -> 属性注入  -> 执行初始化方法 -> 代理对象

@@ -24,6 +24,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * <p>主要是为非spring bean注入容器对象,区别与@Configuration</p>
  * Marks a class as being eligible for Spring-driven configuration.
  *
  * <p>Typically used with the AspectJ {@code AnnotationBeanConfigurerAspect}.

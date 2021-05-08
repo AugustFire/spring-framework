@@ -242,6 +242,7 @@ public class AnnotationConfigUtils {
 	}
 
 	static void processCommonDefinitionAnnotations(AnnotatedBeanDefinition abd, AnnotatedTypeMetadata metadata) {
+		// 设置bd是否懒加载
 		AnnotationAttributes lazy = attributesFor(metadata, Lazy.class);
 		if (lazy != null) {
 			abd.setLazyInit(lazy.getBoolean("value"));
@@ -252,7 +253,7 @@ public class AnnotationConfigUtils {
 				abd.setLazyInit(lazy.getBoolean("value"));
 			}
 		}
-
+		// 设置bd是否是首选的
 		if (metadata.isAnnotated(Primary.class.getName())) {
 			abd.setPrimary(true);
 		}
@@ -260,13 +261,14 @@ public class AnnotationConfigUtils {
 		if (dependsOn != null) {
 			abd.setDependsOn(dependsOn.getStringArray("value"));
 		}
-
+		// 设置bd的role
 		if (abd instanceof AbstractBeanDefinition) {
 			AbstractBeanDefinition absBd = (AbstractBeanDefinition) abd;
 			AnnotationAttributes role = attributesFor(metadata, Role.class);
 			if (role != null) {
 				absBd.setRole(role.getNumber("value").intValue());
 			}
+			//设置bean的文本描述信息
 			AnnotationAttributes description = attributesFor(metadata, Description.class);
 			if (description != null) {
 				absBd.setDescription(description.getString("value"));
@@ -276,7 +278,7 @@ public class AnnotationConfigUtils {
 
 	static BeanDefinitionHolder applyScopedProxyMode(
 			ScopeMetadata metadata, BeanDefinitionHolder definition, BeanDefinitionRegistry registry) {
-
+		//@Scope 默认ScopedProxyMode.DEFAULT = NO
 		ScopedProxyMode scopedProxyMode = metadata.getScopedProxyMode();
 		if (scopedProxyMode.equals(ScopedProxyMode.NO)) {
 			return definition;

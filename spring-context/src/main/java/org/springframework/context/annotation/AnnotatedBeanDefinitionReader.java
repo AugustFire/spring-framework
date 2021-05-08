@@ -46,13 +46,13 @@ import org.springframework.util.Assert;
  * @see AnnotationConfigApplicationContext#register
  */
 public class AnnotatedBeanDefinitionReader {
-
+	// registry
 	private final BeanDefinitionRegistry registry;
-
+	// 注解Bean name生成器
 	private BeanNameGenerator beanNameGenerator = new AnnotationBeanNameGenerator();
-
+	// @Scope解析器
 	private ScopeMetadataResolver scopeMetadataResolver = new AnnotationScopeMetadataResolver();
-
+	// @Condition解析
 	private ConditionEvaluator conditionEvaluator;
 
 
@@ -214,15 +214,20 @@ public class AnnotatedBeanDefinitionReader {
 	 */
 	<T> void doRegisterBean(Class<T> annotatedClass, @Nullable Supplier<T> instanceSupplier, @Nullable String name,
 			@Nullable Class<? extends Annotation>[] qualifiers, BeanDefinitionCustomizer... definitionCustomizers) {
-
+		// 通过配置类生成bd
 		AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(annotatedClass);
+		// 判断这个bd是否需要跳过
 		if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) {
 			return;
 		}
-
+		// 可以提供实例提供者(可选的)
 		abd.setInstanceSupplier(instanceSupplier);
+
+		// 解析Scope信息
 		ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);
 		abd.setScope(scopeMetadata.getScopeName());
+
+		// 生成beanName
 		String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
 		// 处理公共的注解 @Lazy @Primary ..
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
